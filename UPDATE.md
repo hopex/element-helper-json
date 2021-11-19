@@ -19,7 +19,13 @@ import * as kebabCaseATTRS from 'element-helper-json-new/element-attributes.json
 //<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
 
 const getProps=(comp)=>{
-  return JSON.stringify(Object.keys(comp.props).map(m=>humps.decamelize(m, { separator: '-' })))
+  return JSON.stringify({
+     [humps.decamelize(comp.name, { separator: '-' })]:{
+            "attributes":Object.keys(comp.props).map(m=>humps.decamelize(m, { separator: '-' })),
+            "subtags": [],
+            "new-component":true
+     }
+  })
 }
 
 //use
